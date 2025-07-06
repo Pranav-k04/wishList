@@ -1,0 +1,41 @@
+-- Create users collection (MongoDB doesn't use traditional SQL, but this shows the structure)
+-- Users Collection Structure:
+-- {
+--   _id: ObjectId,
+--   email: String (unique),
+--   username: String (unique),
+--   password: String (hashed),
+--   createdAt: Date
+-- }
+
+-- Create wishlists collection
+-- Wishlists Collection Structure:
+-- {
+--   _id: ObjectId,
+--   name: String,
+--   description: String,
+--   createdBy: String (user ID),
+--   createdByUsername: String,
+--   members: [String] (array of user IDs),
+--   memberUsernames: [String] (array of usernames),
+--   products: [
+--     {
+--       _id: ObjectId,
+--       name: String,
+--       imageUrl: String,
+--       price: Number,
+--       addedBy: String (user ID),
+--       addedByUsername: String,
+--       addedAt: Date
+--     }
+--   ],
+--   createdAt: Date,
+--   updatedAt: Date
+-- }
+
+-- MongoDB Indexes for better performance
+-- db.users.createIndex({ "email": 1 }, { unique: true })
+-- db.users.createIndex({ "username": 1 }, { unique: true })
+-- db.wishlists.createIndex({ "createdBy": 1 })
+-- db.wishlists.createIndex({ "members": 1 })
+-- db.wishlists.createIndex({ "createdAt": -1 })
